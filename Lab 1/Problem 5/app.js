@@ -20,9 +20,14 @@ $("#equals").on('click', function () {
     var secondNumberText = $('#secondNumber').val();
     var operator = $('#operator').val();
 
+    if (firstNumberText === "" || secondNumberText === "") {
+        $("#result").val(""); 
+        return;
+    }
+
     var firstNumber = parseInt(firstNumberText);
     var secondNumber = parseInt(secondNumberText);
 
     var result = calculate(firstNumber, secondNumber, operator);
-    $("#result").html(result);
+    $("#result").val(result);
 });

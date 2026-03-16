@@ -12,6 +12,11 @@ function increment() {
     printValue("counter", counter);
 
 }
+ 
+// Reading & Setting value
 
-var textValue = $('#inputTextId').val();
-$('#inputTextId').val('123');
+/* 
+var textValue = $('#counter').text(); 
+console.log(textValue);
+$('#counter').text('123');
+*/

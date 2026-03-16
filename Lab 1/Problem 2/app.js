@@ -1,25 +1,25 @@
-var counter1 = 0;
-var counter2 = 10;
+var counter= 0;
 
 function printValue (divId, value) {
     document.getElementById(divId).innerHTML = value;
 }
-printValue("counter1", 0);
-printValue("counter2", 10);
+printValue("counter", 0);
 
 document.getElementById("inc").addEventListener ("click",increment);
 document.getElementById("dec").addEventListener ("click",decrement);
 
 function increment() {
-    counter1++;
-    printValue("counter1", counter1) ;
+    counter++;
+    if(counter == 11)
+        counter = 0;
 
+    printValue("counter", counter);
 }
 
 function decrement() {
-    counter2--;
-    printValue("counter2", counter2);
-
-    if(counter2 == 0)
-        counter2 = 11;
+    counter--;
+    if(counter == -1)
+    counter = 10;
+    
+    printValue("counter", counter);
 }

@@ -10,5 +10,4 @@ document.getElementById("inc").addEventListener ("click",increment);
 function increment() {
     counter++;
     printValue("counter", counter) ;
-
 }
