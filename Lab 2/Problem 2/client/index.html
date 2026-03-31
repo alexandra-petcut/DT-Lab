@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta content="text/html ; charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <title>Users manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="users.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <div class="form-row">
+            <input v-model="newUser.name" placeholder="Name">
+            <input v-model="newUser.city" placeholder="City">
+            <button @click="addUser">Add user</button>
+        </div>
+
+        <div class="form-row edit-form" v-if="editIndex !== -1">
+            <input v-model="editUser.name" placeholder="Edit name">
+            <input v-model="editUser.city" placeholder="Edit city">
+            <button @click="saveEdit">Save</button>
+            <button @click="cancelEdit">Cancel</button>
+        </div>
+
+        <ul class="user-list">
+            <li v-for="(user, index) in users">
+                <div class="user-row">
+                    <div class="user-info"></div>
+                        <div class="user-name"><b>{{ user.name }}</b></div>
+                        <div class="user-city"><i>{{ user.city }}</i></div>
+
+                        <button @click="startEdit(index)">Update</button>
+                        <button @click="deleteUser(index)">Delete</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

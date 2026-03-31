@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Chat</title>
+</head>
+<body>
+    <div id="app">
+        <h2>Chat</h2>
+
+        <div>
+            <p v-for="msg in messages">{{ msg }}</p>
+        </div>
+
+        <input v-model="message" type="text" placeholder="Write a message">
+        <button v-on:click="sendMessage">Send</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>

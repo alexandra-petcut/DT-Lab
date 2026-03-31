@@ -1,0 +1,16 @@
+.message {
+  border: 1px solid #777;
+  padding: 7px;
+  margin: 5px;
+}
+
+.process-button {
+  padding: 7px 12px;
+  margin: 5px;
+}
+
+.output {
+  padding: 7px;
+  margin: 5px;
+  color: green;
+}

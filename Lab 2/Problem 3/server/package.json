@@ -1,0 +1,9 @@
+{
+    "name": "chat-server",
+    "version": "0.0.1",
+    "description": "Data Transmission websocket api",
+    "dependencies": {},
+    "devDependencies": {
+        "socket.io": "^2.2.0"
+    }
+}
