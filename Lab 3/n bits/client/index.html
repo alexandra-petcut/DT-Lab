@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <title>Hamming Encoder (n bits)</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div id="hamming-encoder">
+      <h1>
+        Hamming code for
+        <input
+          type="number"
+          min="1"
+          max="64"
+          v-model.number="numberOfDataBits"
+          v-on:change="initDataBits()"
+        />
+        bits
+      </h1>
+
+      <br />
+      <ul v-for="(bit, index) in dataBits">
+        <li>
+          <input
+            maxlength="1"
+            :placeholder="'D'+index"
+            v-model="bit.data"
+            v-bind:class="[validateBit(bit.data) ? 'valid-input' : 'invalid-input']"
+          />
+        </li>
+      </ul>
+      <br />
+      Data bits: <code>{{dataBits.map(b => b.data)}}</code>
+      <br />
+
+      <button v-on:click="send()">Send</button>
+
+      <p v-if="encodedMessage.length">
+        Encoded codeword sent to server:
+        <code>[{{ encodedMessage.join(', ') }}]</code>
+      </p>
+      <p>{{ status }}</p>
+    </div>
+
+    <script type="text/javascript" src="libs/vue.js"></script>
+    <script type="text/javascript" src="libs/axios.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
+</html>
