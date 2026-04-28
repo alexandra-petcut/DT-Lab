@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chapter 4 - Huffman and Shannon-Fano Compression</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Chapter 4 - Data compression</h1>
+    <p class="lead">
+      Huffman and Shannon-Fano compression with generated compression trees.
+      Convention: left branch = 0, right branch = 1.
+    </p>
+
+    <section class="input-panel">
+      <label for="inputText">Input text</label>
+      <textarea id="inputText" rows="4">this is a simple huffman example for transmission compression</textarea>
+      <button id="runButton">Run compression</button>
+    </section>
+
+    <section id="summary"></section>
+
+    <section class="algorithm-card">
+      <h2>Huffman algorithm</h2>
+      <div id="huffmanOutput" class="output"></div>
+      <h3>Compression tree</h3>
+      <div id="huffmanTree" class="tree-box"></div>
+      <details>
+        <summary>Generated D3 treeData object</summary>
+        <pre id="huffmanTreeData"></pre>
+      </details>
+    </section>
+
+    <section class="algorithm-card">
+      <h2>Shannon-Fano algorithm</h2>
+      <div id="shannonOutput" class="output"></div>
+      <h3>Compression tree</h3>
+      <div id="shannonTree" class="tree-box"></div>
+      <details>
+        <summary>Generated D3 treeData object</summary>
+        <pre id="shannonTreeData"></pre>
+      </details>
+    </section>
+  </main>
+
+  <script src="compression_core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

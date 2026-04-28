@@ -1,0 +1,658 @@
+
+================ Huffman ================
+Input: this is a simple huffman example for transmission compression
+
+Code table:
+"s"        freq= 8 code=011
+"space"    freq= 8 code=100
+"i"        freq= 6 code=000
+"m"        freq= 5 code=1110
+"a"        freq= 4 code=0101
+"e"        freq= 4 code=1010
+"n"        freq= 4 code=1011
+"o"        freq= 4 code=1100
+"f"        freq= 3 code=0010
+"p"        freq= 3 code=11111
+"r"        freq= 3 code=0011
+"h"        freq= 2 code=11010
+"l"        freq= 2 code=11011
+"t"        freq= 2 code=01001
+"c"        freq= 1 code=01000
+"u"        freq= 1 code=111100
+"x"        freq= 1 code=111101
+
+Compression tree:
+root: freq=61
+  0: freq=27 prefix=0
+    0: freq=12 prefix=00
+      0: i freq=6 code=000
+      1: freq=6 prefix=001
+        0: f freq=3 code=0010
+        1: r freq=3 code=0011
+    1: freq=15 prefix=01
+      0: freq=7 prefix=010
+        0: freq=3 prefix=0100
+          0: c freq=1 code=01000
+          1: t freq=2 code=01001
+        1: a freq=4 code=0101
+      1: s freq=8 code=011
+  1: freq=34 prefix=1
+    0: freq=16 prefix=10
+      0: space freq=8 code=100
+      1: freq=8 prefix=101
+        0: e freq=4 code=1010
+        1: n freq=4 code=1011
+    1: freq=18 prefix=11
+      0: freq=8 prefix=110
+        0: o freq=4 code=1100
+        1: freq=4 prefix=1101
+          0: h freq=2 code=11010
+          1: l freq=2 code=11011
+      1: freq=10 prefix=111
+        0: m freq=5 code=1110
+        1: freq=5 prefix=1111
+          0: freq=2 prefix=11110
+            0: u freq=1 code=111100
+            1: x freq=1 code=111101
+          1: p freq=3 code=11111
+
+D3 treeData object, ready to paste into arbore.js:
+var treeData = {
+  "name": "A0 = 61",
+  "count": 61,
+  "code": "",
+  "bit": "",
+  "symbol": null,
+  "children": [
+    {
+      "name": "Level 1: 27 | prefix=0",
+      "count": 27,
+      "code": "0",
+      "bit": "0",
+      "symbol": null,
+      "children": [
+        {
+          "name": "Level 2: 12 | prefix=00",
+          "count": 12,
+          "code": "00",
+          "bit": "0",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: i (6) | code=000",
+              "count": 6,
+              "code": "000",
+              "bit": "0",
+              "symbol": "i"
+            },
+            {
+              "name": "Level 3: 6 | prefix=001",
+              "count": 6,
+              "code": "001",
+              "bit": "1",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: f (3) | code=0010",
+                  "count": 3,
+                  "code": "0010",
+                  "bit": "0",
+                  "symbol": "f"
+                },
+                {
+                  "name": "Level 4: r (3) | code=0011",
+                  "count": 3,
+                  "code": "0011",
+                  "bit": "1",
+                  "symbol": "r"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Level 2: 15 | prefix=01",
+          "count": 15,
+          "code": "01",
+          "bit": "1",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: 7 | prefix=010",
+              "count": 7,
+              "code": "010",
+              "bit": "0",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: 3 | prefix=0100",
+                  "count": 3,
+                  "code": "0100",
+                  "bit": "0",
+                  "symbol": null,
+                  "children": [
+                    {
+                      "name": "Level 5: c (1) | code=01000",
+                      "count": 1,
+                      "code": "01000",
+                      "bit": "0",
+                      "symbol": "c"
+                    },
+                    {
+                      "name": "Level 5: t (2) | code=01001",
+                      "count": 2,
+                      "code": "01001",
+                      "bit": "1",
+                      "symbol": "t"
+                    }
+                  ]
+                },
+                {
+                  "name": "Level 4: a (4) | code=0101",
+                  "count": 4,
+                  "code": "0101",
+                  "bit": "1",
+                  "symbol": "a"
+                }
+              ]
+            },
+            {
+              "name": "Level 3: s (8) | code=011",
+              "count": 8,
+              "code": "011",
+              "bit": "1",
+              "symbol": "s"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Level 1: 34 | prefix=1",
+      "count": 34,
+      "code": "1",
+      "bit": "1",
+      "symbol": null,
+      "children": [
+        {
+          "name": "Level 2: 16 | prefix=10",
+          "count": 16,
+          "code": "10",
+          "bit": "0",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: space (8) | code=100",
+              "count": 8,
+              "code": "100",
+              "bit": "0",
+              "symbol": "space"
+            },
+            {
+              "name": "Level 3: 8 | prefix=101",
+              "count": 8,
+              "code": "101",
+              "bit": "1",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: e (4) | code=1010",
+                  "count": 4,
+                  "code": "1010",
+                  "bit": "0",
+                  "symbol": "e"
+                },
+                {
+                  "name": "Level 4: n (4) | code=1011",
+                  "count": 4,
+                  "code": "1011",
+                  "bit": "1",
+                  "symbol": "n"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Level 2: 18 | prefix=11",
+          "count": 18,
+          "code": "11",
+          "bit": "1",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: 8 | prefix=110",
+              "count": 8,
+              "code": "110",
+              "bit": "0",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: o (4) | code=1100",
+                  "count": 4,
+                  "code": "1100",
+                  "bit": "0",
+                  "symbol": "o"
+                },
+                {
+                  "name": "Level 4: 4 | prefix=1101",
+                  "count": 4,
+                  "code": "1101",
+                  "bit": "1",
+                  "symbol": null,
+                  "children": [
+                    {
+                      "name": "Level 5: h (2) | code=11010",
+                      "count": 2,
+                      "code": "11010",
+                      "bit": "0",
+                      "symbol": "h"
+                    },
+                    {
+                      "name": "Level 5: l (2) | code=11011",
+                      "count": 2,
+                      "code": "11011",
+                      "bit": "1",
+                      "symbol": "l"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Level 3: 10 | prefix=111",
+              "count": 10,
+              "code": "111",
+              "bit": "1",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: m (5) | code=1110",
+                  "count": 5,
+                  "code": "1110",
+                  "bit": "0",
+                  "symbol": "m"
+                },
+                {
+                  "name": "Level 4: 5 | prefix=1111",
+                  "count": 5,
+                  "code": "1111",
+                  "bit": "1",
+                  "symbol": null,
+                  "children": [
+                    {
+                      "name": "Level 5: 2 | prefix=11110",
+                      "count": 2,
+                      "code": "11110",
+                      "bit": "0",
+                      "symbol": null,
+                      "children": [
+                        {
+                          "name": "Level 6: u (1) | code=111100",
+                          "count": 1,
+                          "code": "111100",
+                          "bit": "0",
+                          "symbol": "u"
+                        },
+                        {
+                          "name": "Level 6: x (1) | code=111101",
+                          "count": 1,
+                          "code": "111101",
+                          "bit": "1",
+                          "symbol": "x"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "Level 5: p (3) | code=11111",
+                      "count": 3,
+                      "code": "11111",
+                      "bit": "1",
+                      "symbol": "p"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+Original bits: 488
+Encoded bits: 236
+Compression ratio o/c: 2.068
+Compression rate gamma: 51.64%
+Round-trip equal: true
+Encoded bits: 01001110100000111000000111000101100011000111011111110111010100110101111000010001011100101101110010101111010101111011111110111010100001011000011100010010011010110110111110000011011000110010111000100011001110111110011101001101100011001011
+
+================ Shannon-Fano ================
+Input: this is a simple huffman example for transmission compression
+
+Code table:
+"s"        freq= 8 code=000
+"space"    freq= 8 code=001
+"i"        freq= 6 code=010
+"m"        freq= 5 code=0110
+"a"        freq= 4 code=0111
+"e"        freq= 4 code=1000
+"n"        freq= 4 code=1001
+"o"        freq= 4 code=1010
+"f"        freq= 3 code=1100
+"p"        freq= 3 code=1011
+"r"        freq= 3 code=11010
+"h"        freq= 2 code=11100
+"l"        freq= 2 code=11101
+"t"        freq= 2 code=11011
+"c"        freq= 1 code=111111
+"u"        freq= 1 code=11110
+"x"        freq= 1 code=111110
+
+Compression tree:
+root: freq=61
+  0: freq=31 prefix=0
+    0: freq=16 prefix=00
+      0: s freq=8 code=000
+      1: space freq=8 code=001
+    1: freq=15 prefix=01
+      0: i freq=6 code=010
+      1: freq=9 prefix=011
+        0: m freq=5 code=0110
+        1: a freq=4 code=0111
+  1: freq=30 prefix=1
+    0: freq=15 prefix=10
+      0: freq=8 prefix=100
+        0: e freq=4 code=1000
+        1: n freq=4 code=1001
+      1: freq=7 prefix=101
+        0: o freq=4 code=1010
+        1: p freq=3 code=1011
+    1: freq=15 prefix=11
+      0: freq=8 prefix=110
+        0: f freq=3 code=1100
+        1: freq=5 prefix=1101
+          0: r freq=3 code=11010
+          1: t freq=2 code=11011
+      1: freq=7 prefix=111
+        0: freq=4 prefix=1110
+          0: h freq=2 code=11100
+          1: l freq=2 code=11101
+        1: freq=3 prefix=1111
+          0: u freq=1 code=11110
+          1: freq=2 prefix=11111
+            0: x freq=1 code=111110
+            1: c freq=1 code=111111
+
+D3 treeData object, ready to paste into arbore.js:
+var treeData = {
+  "name": "A0 = 61",
+  "count": 61,
+  "code": "",
+  "bit": "",
+  "symbol": null,
+  "children": [
+    {
+      "name": "Level 1: 31 | prefix=0",
+      "count": 31,
+      "code": "0",
+      "bit": "0",
+      "symbol": null,
+      "children": [
+        {
+          "name": "Level 2: 16 | prefix=00",
+          "count": 16,
+          "code": "00",
+          "bit": "0",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: s (8) | code=000",
+              "count": 8,
+              "code": "000",
+              "bit": "0",
+              "symbol": "s"
+            },
+            {
+              "name": "Level 3: space (8) | code=001",
+              "count": 8,
+              "code": "001",
+              "bit": "1",
+              "symbol": "space"
+            }
+          ]
+        },
+        {
+          "name": "Level 2: 15 | prefix=01",
+          "count": 15,
+          "code": "01",
+          "bit": "1",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: i (6) | code=010",
+              "count": 6,
+              "code": "010",
+              "bit": "0",
+              "symbol": "i"
+            },
+            {
+              "name": "Level 3: 9 | prefix=011",
+              "count": 9,
+              "code": "011",
+              "bit": "1",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: m (5) | code=0110",
+                  "count": 5,
+                  "code": "0110",
+                  "bit": "0",
+                  "symbol": "m"
+                },
+                {
+                  "name": "Level 4: a (4) | code=0111",
+                  "count": 4,
+                  "code": "0111",
+                  "bit": "1",
+                  "symbol": "a"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Level 1: 30 | prefix=1",
+      "count": 30,
+      "code": "1",
+      "bit": "1",
+      "symbol": null,
+      "children": [
+        {
+          "name": "Level 2: 15 | prefix=10",
+          "count": 15,
+          "code": "10",
+          "bit": "0",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: 8 | prefix=100",
+              "count": 8,
+              "code": "100",
+              "bit": "0",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: e (4) | code=1000",
+                  "count": 4,
+                  "code": "1000",
+                  "bit": "0",
+                  "symbol": "e"
+                },
+                {
+                  "name": "Level 4: n (4) | code=1001",
+                  "count": 4,
+                  "code": "1001",
+                  "bit": "1",
+                  "symbol": "n"
+                }
+              ]
+            },
+            {
+              "name": "Level 3: 7 | prefix=101",
+              "count": 7,
+              "code": "101",
+              "bit": "1",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: o (4) | code=1010",
+                  "count": 4,
+                  "code": "1010",
+                  "bit": "0",
+                  "symbol": "o"
+                },
+                {
+                  "name": "Level 4: p (3) | code=1011",
+                  "count": 3,
+                  "code": "1011",
+                  "bit": "1",
+                  "symbol": "p"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Level 2: 15 | prefix=11",
+          "count": 15,
+          "code": "11",
+          "bit": "1",
+          "symbol": null,
+          "children": [
+            {
+              "name": "Level 3: 8 | prefix=110",
+              "count": 8,
+              "code": "110",
+              "bit": "0",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: f (3) | code=1100",
+                  "count": 3,
+                  "code": "1100",
+                  "bit": "0",
+                  "symbol": "f"
+                },
+                {
+                  "name": "Level 4: 5 | prefix=1101",
+                  "count": 5,
+                  "code": "1101",
+                  "bit": "1",
+                  "symbol": null,
+                  "children": [
+                    {
+                      "name": "Level 5: r (3) | code=11010",
+                      "count": 3,
+                      "code": "11010",
+                      "bit": "0",
+                      "symbol": "r"
+                    },
+                    {
+                      "name": "Level 5: t (2) | code=11011",
+                      "count": 2,
+                      "code": "11011",
+                      "bit": "1",
+                      "symbol": "t"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "name": "Level 3: 7 | prefix=111",
+              "count": 7,
+              "code": "111",
+              "bit": "1",
+              "symbol": null,
+              "children": [
+                {
+                  "name": "Level 4: 4 | prefix=1110",
+                  "count": 4,
+                  "code": "1110",
+                  "bit": "0",
+                  "symbol": null,
+                  "children": [
+                    {
+                      "name": "Level 5: h (2) | code=11100",
+                      "count": 2,
+                      "code": "11100",
+                      "bit": "0",
+                      "symbol": "h"
+                    },
+                    {
+                      "name": "Level 5: l (2) | code=11101",
+                      "count": 2,
+                      "code": "11101",
+                      "bit": "1",
+                      "symbol": "l"
+                    }
+                  ]
+                },
+                {
+                  "name": "Level 4: 3 | prefix=1111",
+                  "count": 3,
+                  "code": "1111",
+                  "bit": "1",
+                  "symbol": null,
+                  "children": [
+                    {
+                      "name": "Level 5: u (1) | code=11110",
+                      "count": 1,
+                      "code": "11110",
+                      "bit": "0",
+                      "symbol": "u"
+                    },
+                    {
+                      "name": "Level 5: 2 | prefix=11111",
+                      "count": 2,
+                      "code": "11111",
+                      "bit": "1",
+                      "symbol": null,
+                      "children": [
+                        {
+                          "name": "Level 6: x (1) | code=111110",
+                          "count": 1,
+                          "code": "111110",
+                          "bit": "0",
+                          "symbol": "x"
+                        },
+                        {
+                          "name": "Level 6: c (1) | code=111111",
+                          "count": 1,
+                          "code": "111111",
+                          "bit": "1",
+                          "symbol": "c"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+Original bits: 488
+Encoded bits: 236
+Compression ratio o/c: 2.068
+Compression rate gamma: 51.64%
+Round-trip equal: true
+Encoded bits: 11011111000100000010100000010111001000010011010111110110000011110011110110011000110011110010011000111110011101101011111011000001110010101101000111011110100111100100001100100000000101010100100111111110100110101111010100000000001010101001
