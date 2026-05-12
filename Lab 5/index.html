@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Baseband Encoder</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <main id="baseband-encoder" class="app-shell">
+    <section class="toolbar" aria-label="Bit stream controls">
+      <div>
+        <h1>Baseband Encoder</h1>
+        <p class="subtitle">Data encoding techniques from DT Laboratory, section 5.</p>
+      </div>
+      <label class="bit-input">
+        <span>Bit stream</span>
+        <input id="bit-stream" maxlength="64" value="1100100001000" autocomplete="off">
+      </label>
+      <div class="actions">
+        <button type="button" data-example="1100100001000">Ex. 1</button>
+        <button type="button" data-example="1000010000110000">AMI</button>
+        <button type="button" data-example="1001010110100100">MLT-3</button>
+        <button type="button" data-example="0000110000100001">4B/5B</button>
+      </div>
+    </section>
+
+    <section class="status-panel" aria-live="polite">
+      <div>
+        <span class="label">Bits</span>
+        <code id="bits-model"></code>
+      </div>
+      <div>
+        <span class="label">Notes</span>
+        <span id="status-text"></span>
+      </div>
+    </section>
+
+    <section class="encoder-grid" id="encoder-grid" aria-label="Encoded waveforms"></section>
+  </main>
+
+  <script src="helpers.js"></script>
+  <script src="baseband-codes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
